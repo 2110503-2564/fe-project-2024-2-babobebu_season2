@@ -1,0 +1,23 @@
+.banner{
+    display: block;
+    padding: 5px;
+    margin: 0;
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+}
+
+
+
+.bannerText {
+    position: relative;
+    margin-top: 80px;  /* Fixed missing unit */
+    top: 100px;
+    z-index: 20;
+    text-align: center;
+    color: white; /* Change based on your background */
+
+    /* Adds a nice text shadow */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+}
+
