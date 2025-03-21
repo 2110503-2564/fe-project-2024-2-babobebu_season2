@@ -39,3 +39,20 @@ interface VenueItem {
     telephonenumber: string,
     __v: number,
   }
+
+  export type JobPostingJson = {
+    count: number;
+    data: {
+        _id: string;
+        title: string;
+        jobdescription: string;
+        requirement: string;
+        salary_range: string;
+        jobtype: "Full-time" | "Part-time" | "Contract" | "Internship" | "Temporary";
+        company: {
+            _id: string;
+            name: string;
+        };
+        posted_date: string;
+    }[];
+  };
