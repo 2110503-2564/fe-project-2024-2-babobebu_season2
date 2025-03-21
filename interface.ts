@@ -12,7 +12,7 @@ interface VenueItem {
     id: string
   }
   
-  interface VenueJson {
+  export interface VenueJson {
     success: boolean,
     count: number,
     pagination: Object,
@@ -20,7 +20,7 @@ interface VenueItem {
   }
 
 
-  interface CompanyJson{
+  export interface CompanyJson{
     success: boolean,
     count: number,
     pagination: Object,
@@ -56,3 +56,20 @@ interface VenueItem {
         posted_date: string;
     }[];
   };
+
+  export type InterviewJson = {
+    count: number;
+    data: {
+        _id: string;
+        intwDate: string;
+        user: {
+            _id: string;
+            name: string;
+        };
+        company: {
+            _id: string;
+            name: string;
+        };
+        createdAt: string;
+    }[];
+};
