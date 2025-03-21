@@ -6,23 +6,24 @@ import { useRouter } from "next/navigation"; // Import useRouter
 import { useState } from "react"; // Import useState
 
 export default async function DeleteCompanyDetailPage({ params }: { params: { cid: string } }) {
-    const router = useRouter(); // Initialize router
-    const [isDeleting, setIsDeleting] = useState(false); // Add isDeleting state
-    const [deleteError, setDeleteError] = useState<string | null>(null); // Add deleteError state
+    // console.log("loading page"); 
+    const router = useRouter(); 
+    // const [isDeleting, setIsDeleting] = useState(false); // Add isDeleting state
+    // const [deleteError, setDeleteError] = useState<string | null>(null); // Add deleteError state
 
     const companyDetail = await getCompany(params.cid);
 
     const handleDelete = async () => {
-        setIsDeleting(true); // Set deleting state to true
-        setDeleteError(null); // Reset error state
+        // setIsDeleting(true); // Set deleting state to true
+        // setDeleteError(null); // Reset error state
 
         try {
             await deleteCompany(params.cid);
-            router.push("/"); // Redirect after successful deletion
+            router.push("/delete");
         } catch (error: any) {
-            setDeleteError(error.message || "Failed to delete company.");
+            // setDeleteError(error.message || "Failed to delete company.");
         } finally {
-            setIsDeleting(false); // Reset deleting state
+            // setIsDeleting(false); // Reset deleting state
         }
     };
 
@@ -60,11 +61,10 @@ export default async function DeleteCompanyDetailPage({ params }: { params: { ci
                 </div>
             </div>
 
-            <button className="bg-red-500 p-2" onClick={handleDelete} disabled={isDeleting}>
-                {isDeleting ? "Deleting..." : "Delete Company"}
+            <button className="bg-red-500 p-2" onClick={handleDelete} >
+               Delete Company 
             </button>
 
-            {deleteError && <p style={{ color: "red" }}>{deleteError}</p>}
         </main>
     );
 }
