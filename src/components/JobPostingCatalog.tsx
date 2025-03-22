@@ -15,7 +15,7 @@ export default async function JobPostingCatalog({ jobPostingsJson }: { jobPostin
                 {
                     jobPostingJsonReady.data.map((jobItem: { _id: Key | null | undefined; title: string; }) => (
                         <Link href={`/jobpostings/${jobItem._id}`} className="w-1/5 px-5 py-3" key={jobItem._id}> 
-                            <Card companyName={jobItem.title} imgSrc="https://drive.google.com/uc?export=view&id=1VThaI32ox5b6Knz9AHAf9IN3ek6RIWrH" />
+                            <Card companyName={jobItem.title} imgSrc="https://drive.google.com/uc?export=view&id=1zsUjQWcLSkKX0ZMxlrsPGOoQLFCEZHa1" />
                         </Link>
                     ))
                 }

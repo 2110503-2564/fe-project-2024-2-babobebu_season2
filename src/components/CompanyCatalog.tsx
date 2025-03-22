@@ -27,7 +27,7 @@ export default async function CCatalog({ companiesJson }: { companiesJson: Promi
                     >
                         <Card 
                             companyName={companyItem.name} 
-                            imgSrc="https://drive.google.com/uc?export=view&id=1VThaI32ox5b6Knz9AHAf9IN3ek6RIWrH"
+                            imgSrc="https://drive.google.com/uc?export=view&id=15h1pNn4EgAqfzFcEhhYrupPCdZFwARRw"
                         />
                     </Link>
                 ))}
