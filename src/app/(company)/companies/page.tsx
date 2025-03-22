@@ -22,7 +22,7 @@ export default function Companies() {
                     </div>
                 </div>
             }>
-                <CompanyCatalog companiesJson={companies} />
+            <CompanyCatalog companiesJson={companies} />
             </Suspense>
         </main>
     );

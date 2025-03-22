@@ -20,11 +20,11 @@ export default function TopMenu() {
             </Link>
 
             {/* Menu Items */}
-            <nav className="flex space-x-6">
+            {/* <nav className="flex space-x-6">
                 <Link href="/booking" className="text-lg font-semibold hover:text-cyan-800 transition-all">
                     Book Interview
                 </Link>
-            </nav>
+            </nav> */}
 
             {/* Authentication Button */}
             <div className="flex items-center space-x-4">
