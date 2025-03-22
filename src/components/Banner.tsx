@@ -72,15 +72,13 @@ export default function Banner() {
                     See JobPostings
                 </button>
 
-                {/* See Interviews Button for Admins */}
-                {session?.user?.role === 'admin' && (
-                    <button
-                        className="bg-white text-black font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
-                        onClick={(e) => { e.stopPropagation(); router.push('/interviews'); }} // Change path manually
-                    >
-                        See Interviews
-                    </button>
-                )}
+                {/* See Interviews Button */}
+                <button
+                    className="bg-white text-black font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
+                    onClick={(e) => { e.stopPropagation(); router.push('/interviews'); }} // Change path manually
+                >
+                    See Interviews
+                </button>
             </div>
         </div>
     );
