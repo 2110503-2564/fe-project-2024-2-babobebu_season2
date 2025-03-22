@@ -62,14 +62,14 @@ interface VenueItem {
     data: {
         _id: string;
         intwDate: string;
-        user: {
-            _id: string;
-            name: string;
-        };
+        user: string;
         company: {
             _id: string;
             name: string;
+            province: string;
+            telephonenumber: string;
         };
         createdAt: string;
+        __v: number;
     }[];
 };
