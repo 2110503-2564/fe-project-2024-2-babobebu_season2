@@ -32,9 +32,7 @@ export default function Banner() {
                         alt="cover"
                         fill
                         priority
-                        className={`object-cover transition-opacity duration-1000 ease-in-out ${
-                            index === i ? 'opacity-100' : 'opacity-0'
-                        }`}
+                        className={`object-cover transition-opacity duration-1000 ease-in-out ${index === i ? 'opacity-100' : 'opacity-0'}`}
                     />
                 ))}
             </div>
@@ -56,13 +54,34 @@ export default function Banner() {
                 </div>
             )}
 
-            {/* Action Button */}
-            <button
-                className="absolute bottom-6 right-6 bg-gradient-to-r from-cyan-500 to-green-500 text-white font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
-                onClick={(e) => { e.stopPropagation(); router.push('/companies'); }}
-            >
-                See Companies
-            </button>
+            {/* Action Buttons */}
+            <div className="absolute bottom-6 right-6 flex space-x-4">
+                {/* See Companies Button */}
+                <button
+                    className="bg-gradient-to-r from-cyan-500 to-green-500 text-white font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
+                    onClick={(e) => { e.stopPropagation(); router.push('/companies'); }}
+                >
+                    See Companies
+                </button>
+
+                {/* See JobPostings Button */}
+                <button
+                    className="bg-white text-black font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
+                    onClick={(e) => { e.stopPropagation(); router.push('/jobpostings'); }} // Change path manually
+                >
+                    See JobPostings
+                </button>
+
+                {/* See Interviews Button for Admins */}
+                {session?.user?.role === 'admin' && (
+                    <button
+                        className="bg-white text-black font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
+                        onClick={(e) => { e.stopPropagation(); router.push('/interviews'); }} // Change path manually
+                    >
+                        See Interviews
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

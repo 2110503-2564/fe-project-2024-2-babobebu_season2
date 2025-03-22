@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import registerUser from "@/libs/registerUser";
@@ -34,12 +34,14 @@ function RegisterUser() {
     }
 
     return (
-        <main className="w-full flex flex-col items-center space-y-6 py-6">
-            <div className="text-2xl font-semibold text-black">User Registration</div>
-            <div className="text-md text-gray-600 text-center">
+        <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-white flex flex-col items-center py-12 px-6">
+            <div className="text-3xl font-extrabold drop-shadow-lg mb-8">
+                User Registration
+            </div>
+            <div className="text-md text-white text-center mb-8">
                 Fill in the details below to create an account
             </div>
-            <form onSubmit={handleSubmit} className="w-fit p-4 bg-white rounded-lg shadow-lg space-y-4">
+            <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white/90 text-black rounded-xl shadow-lg space-y-6">
                 <input 
                     type="text" 
                     name="name" 
@@ -47,7 +49,7 @@ function RegisterUser() {
                     onChange={handleChange} 
                     placeholder="Name" 
                     required 
-                    className="w-full p-2 border rounded" 
+                    className="w-full p-3 bg-white border rounded-lg shadow-sm focus:ring-2 focus:ring-cyan-400"
                 />
                 <input 
                     type="text" 
@@ -56,7 +58,7 @@ function RegisterUser() {
                     onChange={handleChange} 
                     placeholder="Telephone" 
                     required 
-                    className="w-full p-2 border rounded" 
+                    className="w-full p-3 bg-white border rounded-lg shadow-sm focus:ring-2 focus:ring-cyan-400"
                 />
                 <input 
                     type="email" 
@@ -65,7 +67,7 @@ function RegisterUser() {
                     onChange={handleChange} 
                     placeholder="Email" 
                     required 
-                    className="w-full p-2 border rounded" 
+                    className="w-full p-3 bg-white border rounded-lg shadow-sm focus:ring-2 focus:ring-cyan-400"
                 />
                 <input 
                     type="password" 
@@ -74,10 +76,10 @@ function RegisterUser() {
                     onChange={handleChange} 
                     placeholder="Password (min. 6 characters)" 
                     required 
-                    className="w-full p-2 border rounded" 
+                    className="w-full p-3 bg-white border rounded-lg shadow-sm focus:ring-2 focus:ring-cyan-400"
                 />
                 <button 
-                    className="block w-full rounded bg-[#F5DEB3] hover:bg-[#8B4513] px-6 py-3 text-white shadow-md font-semibold"
+                    className="block w-full rounded bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-3 px-6 shadow-md transition-all duration-300 ease-in-out"
                     type="submit">
                     Register
                 </button>
