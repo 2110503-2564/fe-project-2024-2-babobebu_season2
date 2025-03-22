@@ -3,6 +3,9 @@ export async function addJobPosting(companyId: string, formData: Record<string, 
     try {
         const session = await getSession(); // Get session data
         const token = session?.user.token; // Extract token
+        console.log('Yaai');
+        console.log("Token:", token);
+        console.log('Yeyy')
 
         if (!token) {
             return { success: false, message: "No token found. Please log in." };
