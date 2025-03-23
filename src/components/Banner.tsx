@@ -10,6 +10,11 @@ export default function Banner() {
     const router = useRouter();
     const { data: session } = useSession();
 
+    // Log session to check if it's properly loaded
+    useEffect(() => {
+        console.log(session);
+    }, [session]);
+
     // Auto-change background every 5 seconds
     useEffect(() => {
         const interval = setInterval(() => {
@@ -49,9 +54,15 @@ export default function Banner() {
 
             {/* Welcome Message */}
             {session && (
-                <div className="absolute top-5 right-10 bg-white/80 text-black px-4 py-2 rounded-xl shadow-md font-medium text-lg">
+                <button
+                    className="absolute top-5 right-10 bg-white/80 text-black font-semibold px-5 py-3 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none"
+                    onClick={(e) => { 
+                        console.log('Yeay');
+                        router.push('/me'); 
+                    }}
+                >
                     Welcome, {session.user?.name}
-                </div>
+                </button>
             )}
 
             {/* Action Buttons */}
