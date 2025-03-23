@@ -1,4 +1,3 @@
-//ของมิน
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import { getServerSession } from "next-auth";
 import getUserProfile from "@/libs/getUserProfile";
@@ -54,4 +53,4 @@ export default async function Booking() {
         </main>
     );
 }
-//ของมิน
+
