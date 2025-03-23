@@ -11,13 +11,15 @@ export default function TopMenu() {
             {/* Logo */}
             <Link href="/">
                 <Image
-                    src="/img/logo3.png"
+                    src="/img/logo5.png"
                     alt="logo"
-                    width={80}
-                    height={30}
+                    width={125}
+                    height={115}
+                    style={{ marginTop: "110px" }}
                     className="object-contain cursor-pointer"
                 />
             </Link>
+            
 
             {/* Menu Items */}
             {/* <nav className="flex space-x-6">
