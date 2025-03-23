@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import getInterviews from "@/libs/getInterviews";
 import { InterviewJson } from "../../../../interface";
-import InterviewCatalog from "@/components/InterviewCatalog"; // Import the new component
+import InterviewCatalog from "@/components/InterviewCatalog";
+import { LinearProgress } from "@mui/material";
 
 const Page = () => {
     const [interviews, setInterviews] = useState<InterviewJson | null>(null);
@@ -28,25 +29,34 @@ const Page = () => {
         fetchInterviews();
     }, []);
 
-    if (loading) {
-        return <div className="text-center text-xl">Loading interviews...</div>;
-    }
-
-    if (error) {
-        return <div className="text-center text-xl text-red-500">Error: {error}</div>;
-    }
-
     return (
-        <div className="p-6 text-black">
-            <h1 className="text-2xl font-bold mb-6 text-center">Interviews</h1>
-            {interviews && interviews.data.length > 0 ? (
-                <InterviewCatalog interviewsJson={interviews} /> // Use InterviewCatalog component here
-            ) : (
-                <div className="text-center text-xl">No interviews found</div>
+        <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-center py-16 px-6 text-white">
+            {/* Page Title */}
+            <h1 className="text-3xl md:text-4xl font-extrabold drop-shadow-lg mb-10">
+                Explore Scheduled Interviews!
+            </h1>
+
+            {/* Loader */}
+            {loading && (
+                <div className="mt-10 flex flex-col items-center">
+                    <p className="text-lg font-medium">Loading interviews...</p>
+                    <div className="w-1/2 md:w-1/3 mt-2">
+                        <LinearProgress color="inherit" />
+                    </div>
+                </div>
             )}
-        </div>
+
+            {/* Error Message */}
+            {error && <div className="text-xl text-red-500">{error}</div>}
+
+            {/* Content */}
+            {!loading && !error && interviews && interviews.data.length > 0 ? (
+                <InterviewCatalog interviewsJson={interviews} />
+            ) : (
+                !loading && !error && <div className="text-xl">No interviews found.</div>
+            )}
+        </main>
     );
 };
 
 export default Page;
-

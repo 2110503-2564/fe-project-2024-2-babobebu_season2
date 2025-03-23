@@ -10,7 +10,7 @@ export default async function JobPostingPage() {
         <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-center py-16 px-6 text-white">
             {/* Page Title with More Spacing */}
             <h1 className="text-3xl md:text-4xl font-extrabold drop-shadow-lg mb-10">
-                Select Your Company
+                Explore Jobs!!!
             </h1>
             
         {/* Loader & Content */}

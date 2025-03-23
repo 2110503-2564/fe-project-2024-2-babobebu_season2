@@ -11,10 +11,10 @@ export default function TopMenu() {
             {/* Logo */}
             <Link href="/">
                 <Image
-                    src="/img/logo2.jpg"
+                    src="/img/logo3.png"
                     alt="logo"
-                    width={120}
-                    height={40}
+                    width={80}
+                    height={30}
                     className="object-contain cursor-pointer"
                 />
             </Link>
