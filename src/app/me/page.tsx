@@ -1,8 +1,9 @@
+//ของมิน
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import { getServerSession } from "next-auth";
 import getUserProfile from "@/libs/getUserProfile";
 import ClientBooking from "@/components/ClientBooking";
-import { useRouter } from "next/navigation"; // use navigation for server-side navigation
+import Link from 'next/link';
 
 export default async function Booking() {
     const session = await getServerSession(authOptions);
@@ -11,11 +12,7 @@ export default async function Booking() {
     const profile = await getUserProfile(session.user.token);
     const createdAt = new Date(profile.data.createdAt);
 
-    const router = useRouter();  // Hook to navigate
-
-    const handleNavigate = () => {
-        router.push('/interviews'); // Navigate to the '/interviews' page
-    };
+    console.log(profile)
 
     return (
         <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-white flex flex-col items-center py-12 px-6">
@@ -28,12 +25,16 @@ export default async function Booking() {
                 <table className="table-auto border-separate border-spacing-2 w-full">
                     <tbody>
                         <tr>
-                            <td className="text-md text-gray-700">📧 <strong>Email</strong></td>
-                            <td className="text-md">{profile.data.email}</td>
+                            <td className="text-md text-gray-700">👤 <strong>Name</strong></td>
+                            <td className="text-md">{profile.data.name}</td>
                         </tr>
                         <tr>
-                            <td className="text-md text-gray-700">📞 <strong>Tel.</strong></td>
-                            <td className="text-md">{profile.data.tel}</td>
+                            <td className="text-md text-gray-700">📧 <strong>Email</strong></td>
+                            <td className="text-md">{profile.data.email} </td>
+                        </tr>
+                        <tr>
+                            <td className="text-md text-gray-700">🔰 <strong>Role</strong></td>
+                            <td className="text-md capitalize">{profile.data.role}</td>
                         </tr>
                         <tr>
                             <td className="text-md text-gray-700">📅 <strong>Member Since</strong></td>
@@ -43,13 +44,14 @@ export default async function Booking() {
                 </table>
             </div>
 
-            {/* Navigation Button */}
-            <button
-                onClick={handleNavigate}
+            {/* Navigation Button using Link */}
+            <Link
+                href="/interviews"
                 className="mt-8 bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
             >
-                📝 Go to Interviews
-            </button>
+                📝 View your Interviews Appointment!
+            </Link>
         </main>
     );
 }
+//ของมิน
