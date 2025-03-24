@@ -30,7 +30,7 @@ export default function CompanyDetailPage({ params }: { params: { cid: string } 
     }
 
     const handleNavigate = () => {
-        router.push(`/addInterview?companyId=${params.cid}`);
+        router.push(`/interviews/add?companyId=${params.cid}`);
     };
 
     const handleNavigatetoUpdate = () => {

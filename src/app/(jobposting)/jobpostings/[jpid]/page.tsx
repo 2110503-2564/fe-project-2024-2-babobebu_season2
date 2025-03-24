@@ -29,7 +29,7 @@ export default function JobPostingDetailPage({ params }: { params: { jpid: strin
 
 
     const handleNavigatetoUpdate = () => {
-        router.push(`/updatejobposting?jobpostingId=${params.jpid}`);
+        router.push(`/jobpostings/update?jobpostingId=${params.jpid}`);
     };
 
     return (

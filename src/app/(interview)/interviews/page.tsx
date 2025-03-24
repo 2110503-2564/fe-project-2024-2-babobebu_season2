@@ -97,7 +97,7 @@ const Page = () => {
                                     <td className="py-3 px-4 flex gap-2 justify-center">
                                         <Button variant="contained" color="primary" 
                                         className="rounded-2xl font-bold"
-                                        onClick={() => router.push(`/updateinterview?interviewId=${interview._id}`)}>
+                                        onClick={() => router.push(`/interviews/update?interviewId=${interview._id}`)}>
                                             Edit
                                         </Button>
                                         <Button variant="contained" color="secondary" 

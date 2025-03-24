@@ -31,7 +31,7 @@ export default function InterviewDetailPage({ params }: { params: { iid: string 
     const { company, intwDate } = interviewDetail.data;
 
     const handleNavigateToUpdate = () => {
-        router.push(`/updateinterview?interviewId=${params.iid}`);
+        router.push(`/interviews/update?interviewId=${params.iid}`);
     };
 
     const handleNavigateToDelete = async () => {
