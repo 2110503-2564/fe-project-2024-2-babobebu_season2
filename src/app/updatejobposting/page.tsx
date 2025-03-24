@@ -52,49 +52,54 @@ function UpdateJobPosting() {
     }
 
     return (
-        <main className="w-full flex flex-col items-center space-y-6 py-6">
-            <div className="text-2xl font-semibold text-black">Update Job Posting</div>
-            <div className="text-md text-gray-600 text-center">
+        <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-white flex flex-col items-center py-12 px-6">
+            <div className="text-3xl font-extrabold drop-shadow-lg mb-6">Update Job Posting</div>
+            {/* <div className="text-md text-gray-600 text-center">
                 Enter the updated job posting details below
+            </div > */}
+
+            <div className="w-full max-w-3xl bg-white/90 text-black rounded-xl shadow-lg p-6">
+                <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+                    {Object.keys(formData).map((key) => (
+                        <div key={key} className="flex flex-col">
+                            <label className="text-gray-700 font-medium capitalize">
+                                {key.replace(/_/g, " ")}:
+                            </label>
+                            {key === "jobtype" ? (
+                                <select
+                                    name={key}
+                                    value={formData[key as keyof typeof formData]}
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white text-black"
+                                >
+                                    <option value="">-- Select Job Type --</option>
+                                    <option value="Full-time">Full-time</option>
+                                    <option value="Part-time">Part-time</option>
+                                    <option value="Contract">Contract</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Temporary">Temporary</option>
+                                </select>
+                            ) : (
+                                <input
+                                    type={key === "jobdescription" || key === "requirement" ? "textarea" : "text"}
+                                    name={key}
+                                    value={formData[key as keyof typeof formData]}
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white text-black"
+                                />
+                            )}
+                        </div>
+                    ))}
+                    <button
+                        className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
+                        type="submit">
+                        Submit
+                    </button>
+                </form>
+                
+                {message && <div className="text-center text-red-600 font-medium mt-4">{message}</div>}
+                
             </div>
-            <form onSubmit={handleSubmit} className="w-fit p-6 bg-white rounded-lg shadow-lg flex flex-col space-y-4">
-                {Object.keys(formData).map((key) => (
-                    <div key={key} className="flex flex-col">
-                        <label className="text-gray-700 font-medium capitalize">
-                            {key.replace(/_/g, " ")}:
-                        </label>
-                        {key === "jobtype" ? (
-                            <select
-                                name={key}
-                                value={formData[key as keyof typeof formData]}
-                                onChange={handleChange}
-                                className="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            >
-                                <option value="">-- Select Job Type --</option>
-                                <option value="Full-time">Full-time</option>
-                                <option value="Part-time">Part-time</option>
-                                <option value="Contract">Contract</option>
-                                <option value="Internship">Internship</option>
-                                <option value="Temporary">Temporary</option>
-                            </select>
-                        ) : (
-                            <input
-                                type={key === "jobdescription" || key === "requirement" ? "textarea" : "text"}
-                                name={key}
-                                value={formData[key as keyof typeof formData]}
-                                onChange={handleChange}
-                                className="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                        )}
-                    </div>
-                ))}
-                <button
-                    className="block rounded bg-[#F5DEB3] hover:bg-[#8B4513] px-6 py-3 text-white shadow-md font-semibold"
-                    type="submit">
-                    Submit
-                </button>
-                {message && <div className="text-center text-red-600 font-medium">{message}</div>}
-            </form>
         </main>
     );
 }
