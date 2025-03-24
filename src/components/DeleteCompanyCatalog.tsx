@@ -7,7 +7,7 @@ export default async function VenueCatalog({companiesJson}: {companiesJson: Prom
     return(
         <>
         <span className="text-black">
-            Explore {companyJsonReady.count} fabulous companies in our catalog
+            There are {companyJsonReady.count} companies in our catalog
         </span> 
         <div style={{margin:"20px", display:"flex",flexDirection:"row", alignContent:"space-around",justifyContent:"space-around", flexWrap:"wrap",padding:"20px"}}>
             {

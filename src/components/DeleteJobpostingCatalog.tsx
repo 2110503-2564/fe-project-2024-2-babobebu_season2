@@ -7,7 +7,7 @@ export default async function DeleteJobpostingCatalog({jobPostingJson}: {jobPost
     return(
         <>
         <span className="text-black">
-            Explore {jobs.count} fabulous companies in our catalog
+            There are {jobs.count} jobpostings in our website
         </span> 
         <div style={{margin:"20px", display:"flex",flexDirection:"row", alignContent:"space-around",justifyContent:"space-around", flexWrap:"wrap",padding:"20px"}}>
             {

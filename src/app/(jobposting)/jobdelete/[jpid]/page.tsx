@@ -48,3 +48,11 @@ export default async function DeleteJobpostingDetailPage({ params }: { params: {
         </main>
     );
 }
+
+
+
+
+
+
+
+
