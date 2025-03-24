@@ -1,9 +1,23 @@
+'use client'
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { Key } from "react";
 import { JobPostingJson } from "../../interface";
 
 export default async function JobPostingCatalog({ jobPostingsJson }: { jobPostingsJson: Promise<JobPostingJson> }) {
+    const { data: session } = useSession();
     const jobPostingJsonReady = await jobPostingsJson;
+
+    // if (!session) {
+    //     // If no session, you can display a message or redirect
+    //     return (
+    //         <div className="w-full bg-white rounded-lg shadow-lg p-6 mt-6">
+    //             <span className="text-red-600 text-lg font-semibold">
+    //                 You must be logged in to view job opportunities.
+    //             </span>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="w-full bg-white rounded-lg shadow-lg p-6 mt-6">
@@ -11,6 +25,18 @@ export default async function JobPostingCatalog({ jobPostingsJson }: { jobPostin
             <span className="text-black text-lg font-semibold">
                 Explore {jobPostingJsonReady.count} job opportunities in our catalog
             </span>
+
+            {/* Add Company Button */}
+            {session?.user?.role === "admin" && (
+                <div className="flex justify-end mt-6"> 
+                    <Link href='/Addcompany'>
+                        <button 
+                            className="bg-black text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-green-600">
+                            Add JobPosting
+                        </button>
+                    </Link>
+                </div>
+            )}
 
             {/* Table view for job postings */}
             <div className="overflow-x-auto mt-6">
@@ -47,34 +73,4 @@ export default async function JobPostingCatalog({ jobPostingsJson }: { jobPostin
             </div>
         </div>
     );
-
-
-
 }
-
-
-// import Link from "next/link";
-// import Card from "./Card";
-// import { Key } from "react";
-// import { JobPostingJson } from "../../interface";
-
-// export default async function JobPostingCatalog({ jobPostingsJson }: { jobPostingsJson: Promise<JobPostingJson> }) {
-//     const jobPostingJsonReady = await jobPostingsJson;
-    
-//     return (
-//         <>
-//             <span className="text-black">
-//                 Explore {jobPostingJsonReady.count} job opportunities in our catalog
-//             </span> 
-//             <div style={{ margin: "20px", display: "flex", flexDirection: "row", alignContent: "space-around", justifyContent: "space-around", flexWrap: "wrap", padding: "20px" }}>
-//                 {
-//                     jobPostingJsonReady.data.map((jobItem: { _id: Key | null | undefined; title: string; }) => (
-//                         <Link href={`/jobpostings/${jobItem._id}`} className="w-1/5 px-5 py-3" key={jobItem._id}> 
-//                             <Card companyName={jobItem.title} imgSrc="https://drive.google.com/uc?export=view&id=1zsUjQWcLSkKX0ZMxlrsPGOoQLFCEZHa1" />
-//                         </Link>
-//                     ))
-//                 }
-//             </div>
-//         </>
-//     );
-// }
