@@ -77,23 +77,19 @@ export default function InterviewDetailPage({ params }: { params: { iid: string 
 
             {/* Buttons */}
             <div className="flex space-x-4 mt-8">
-                {session?.user?.role === "admin" && (
-                    <>
-                        <button
-                            onClick={handleNavigateToUpdate}
-                            className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
-                        >
-                            ✏️ Update Interview
-                        </button>
+                <button
+                    onClick={handleNavigateToUpdate}
+                    className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
+                >
+                    ✏️ Update Interview
+                </button>
 
-                        <button
-                            onClick={handleNavigateToDelete}
-                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
-                        >
-                            🗑️ Delete Interview
-                        </button>
-                    </>
-                )}
+                <button
+                    onClick={handleNavigateToDelete}
+                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
+                >
+                    🗑️ Delete Interview
+                </button>
             </div>
         </main>
     );

@@ -34,12 +34,12 @@ export default function CompanyDetailPage({ params }: { params: { cid: string } 
     };
 
     const handleNavigatetoUpdate = () => {
-        router.push(`/updatecompany?companyId=${params.cid}`);
+        router.push(`/companies/update?companyId=${params.cid}`);
     };
 
 
     const handleNavigatetoDelete = () => {
-        router.push(`/companydelete/${params.cid}`);
+        router.push(`/companies/delete/${params.cid}`);
     };
 
     return (
