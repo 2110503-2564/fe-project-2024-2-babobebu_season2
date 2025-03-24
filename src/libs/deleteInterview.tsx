@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/react";
 
-export async function deleteinterview(jpid: string) {
+export async function deleteInterview(jpid: string) {
     try {
         const session = await getSession();
         const token = session?.user.token;

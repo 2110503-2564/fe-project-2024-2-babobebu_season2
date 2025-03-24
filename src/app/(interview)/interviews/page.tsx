@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import getInterviews from "@/libs/getInterviews";
-// import { deleteInterview } from "@/libs/deleteInterview";
+import { deleteInterview } from "@/libs/deleteInterview";
 import { InterviewJson } from "../../../../interface";
 import { LinearProgress, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 
@@ -40,21 +41,24 @@ const Page = () => {
 
     const confirmDelete = async () => {
         if (selectedInterviewId !== null) {
-            // await deleteInterview(selectedInterviewId);
-            setInterviews((prev) => ({
-                ...prev!,
-                data: prev!.data.filter((interview) => interview._id !== selectedInterviewId)
-            }));
-            setDeleteDialogOpen(false);
-            setSelectedInterviewId(null);
+            try {
+                await deleteInterview(selectedInterviewId);
+                setInterviews((prev) => ({
+                    ...prev!,
+                    data: prev!.data.filter((interview) => interview._id !== selectedInterviewId)
+                }));
+            } catch (error) {
+                setError("Failed to delete interview");
+            } finally {
+                setDeleteDialogOpen(false);
+                setSelectedInterviewId(null);
+            }
         }
     };
 
     return (
         <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-center py-16 px-6 text-white">
-            <h1 className="text-3xl md:text-4xl font-extrabold drop-shadow-lg mb-10">
-                Explore Scheduled Interviews!
-            </h1>
+            <h1 className="text-4xl font-extrabold drop-shadow-lg mb-10">📅 Scheduled Interviews</h1>
 
             {loading && (
                 <div className="mt-10 flex flex-col items-center">
@@ -65,30 +69,40 @@ const Page = () => {
                 </div>
             )}
 
-            {error && <div className="text-xl text-red-500">{error}</div>}
+            {error && <div className="text-xl text-red-500">❌ {error}</div>}
 
             {!loading && !error && interviews && interviews.data.length > 0 ? (
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white text-black rounded-lg overflow-hidden shadow-lg">
                         <thead>
                             <tr className="bg-gray-800 text-white">
-                                <th className="py-2 px-4">Interview ID</th>
-                                <th className="py-2 px-4">User ID</th>
-                                <th className="py-2 px-4">Company Name</th>
-                                <th className="py-2 px-4">Date</th>
-                                <th className="py-2 px-4">Actions</th>
+                                <th className="py-3 px-4">Interview ID</th>
+                                <th className="py-3 px-4">User ID</th>
+                                <th className="py-3 px-4">Company</th>
+                                <th className="py-3 px-4">Date</th>
+                                <th className="py-3 px-4">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {interviews.data.map((interview) => (
-                                <tr key={interview._id} className="border-b">
-                                    <td className="py-2 px-4">{interview._id}</td>
-                                    <td className="py-2 px-4">{interview.user}</td>
-                                    <td className="py-2 px-4">{interview.company.name}</td>
-                                    <td className="py-2 px-4">{interview.intwDate}</td>
-                                    <td className="py-2 px-4 flex gap-2 justify-center">
-                                        <Button variant="contained" color="primary" onClick={() => router.push(`/updateinterview?interviewId=${interview._id}`)}>Edit</Button>
-                                        <Button variant="contained" color="secondary" onClick={() => handleDeleteClick(interview._id)}>
+                                <tr key={interview._id} className="border-b hover:bg-gray-100 transition-all">
+                                    <td className="py-3 px-4">
+                                        <Link href={`/interviews/${interview._id}`} className="text-blue-600 hover:underline">{interview._id}</Link>
+                                    </td>
+                                    <td className="py-3 px-4">{interview.user}</td>
+                                    <td className="py-3 px-4">
+                                        <Link href={`/companies/${interview.company._id}`} className="text-blue-600 hover:underline">{interview.company.name}</Link>
+                                    </td>
+                                    <td className="py-3 px-4">📅 {interview.intwDate}</td>
+                                    <td className="py-3 px-4 flex gap-2 justify-center">
+                                        <Button variant="contained" color="primary" 
+                                        className="rounded-2xl font-bold"
+                                        onClick={() => router.push(`/updateinterview?interviewId=${interview._id}`)}>
+                                            Edit
+                                        </Button>
+                                        <Button variant="contained" color="secondary" 
+                                        className="rounded-2xl bg-red-500 hover:bg-red-400 font-bold"
+                                        onClick={() => handleDeleteClick(interview._id)}>
                                             Delete
                                         </Button>
                                     </td>
@@ -98,7 +112,7 @@ const Page = () => {
                     </table>
                 </div>
             ) : (
-                !loading && !error && <div className="text-xl">No interviews found.</div>
+                !loading && !error && <div className="text-xl">🚫 No interviews found.</div>
             )}
 
             <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>

@@ -56,13 +56,14 @@ function UpdateInterview() {
     };
 
     return (
-        <main className="w-full flex flex-col items-center space-y-6 py-6">
-            <div className="text-2xl font-semibold text-black">Update Interview</div>
-            <div className="text-md text-gray-600 text-center">
-                Please select a new interview date.
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div className="w-fit p-4 bg-white rounded-lg shadow-lg">
+        <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-white flex flex-col items-center py-12 px-6">
+            <h1 className="text-3xl font-extrabold drop-shadow-lg mb-8">Update Interview</h1>
+            <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white/90 text-black rounded-xl shadow-lg p-6 flex flex-col items-center space-y-6">
+                <p className="text-lg text-gray-600 text-center mb-8">
+                    Please select a new interview date.
+                </p>
+                <div className="w-full max-w-sm p-4 bg-white rounded-lg shadow-md">
+                    
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             value={selectedDate}
@@ -72,7 +73,7 @@ function UpdateInterview() {
                     </LocalizationProvider>
                 </div>
                 <button
-                    className="block rounded bg-[#F5DEB3] hover:bg-[#8B4513] px-6 py-3 text-white shadow-md font-semibold"
+                    className="mt-8 bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
                     type="submit"
                 >
                     Update Interview
