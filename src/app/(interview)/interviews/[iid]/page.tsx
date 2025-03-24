@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import getInterview from "@/libs/getInterview"; // Ensure this works client-side
 import { useSession } from "next-auth/react"; // To handle admin role-based access
+import { deleteInterview } from "@/libs/deleteInterview"; // Ensure this is the correct path
 
 export default function InterviewDetailPage({ params }: { params: { iid: string } }) {
     console.log("InterviewDetailPage params:", params);
@@ -21,7 +22,8 @@ export default function InterviewDetailPage({ params }: { params: { iid: string 
         fetchInterview();
     }, [params.iid]);
 
-    if (!interviewDetail) {
+    // Check if interviewDetail and interviewDetail.data are available before destructuring
+    if (!interviewDetail || !interviewDetail.data) {
         return <div className="text-center text-white">Loading...</div>;
     }
 
@@ -33,16 +35,19 @@ export default function InterviewDetailPage({ params }: { params: { iid: string 
     };
 
     const handleNavigateToDelete = async () => {
-        const confirmation = window.confirm("Are you sure you want to delete this interview?");
+        const confirmation = confirm("Are you sure you want to delete this interview?");
         if (confirmation) {
-            // Call backend delete function here
-            // Replace with your backend delete function (e.g., deleteInterview(params.iid))
-            const result = await fetch(`/deleteinterview/${params.iid}`);
-            if (result.ok) {
-                alert("Interview deleted successfully.");
-                router.push('/interviews');  // Redirect to interviews list after deletion
-            } else {
-                alert("Error deleting interview.");
+            try {
+                const result = await deleteInterview(params.iid); // Call the deleteInterview function
+                if (result.success) {
+                    alert("Interview deleted successfully.");
+                    router.push("/interviews");  // Redirect to interviews list after deletion
+                } else {
+                    alert("Error deleting interview.");
+                }
+            } catch (error) {
+                console.error("Error deleting interview:", error);
+                alert("An error occurred while trying to delete the interview.");
             }
         }
     };
