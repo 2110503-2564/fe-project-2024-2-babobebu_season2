@@ -33,6 +33,15 @@ export default function CompanyDetailPage({ params }: { params: { cid: string } 
         router.push(`/addInterview?companyId=${params.cid}`);
     };
 
+    const handleNavigatetoUpdate = () => {
+        router.push(`/updatecompany?companyId=${params.cid}`);
+    };
+
+
+    const handleNavigatetoDelete = () => {
+        router.push(`/companydelete/${params.cid}`);
+    };
+
     return (
         <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-white flex flex-col items-center py-12 px-6">
             {/* Company Name */}
@@ -82,18 +91,22 @@ export default function CompanyDetailPage({ params }: { params: { cid: string } 
 
                 {session?.user?.role === "admin" && (
                 <>
-                    <Link href='/updatecompany'>
-                        <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
-                        >
-                            Update Company
-                        </button>
-                    </Link>
-                    <Link href='/companydelete'>
-                        <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
+
+                    <button 
+                        onClick={handleNavigatetoUpdate}
+                        className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
+                    >
+                        Update Company
+                    </button>
+                
+                    {/* <Link href='/companydelete'> */}
+                        <button 
+                            onClick={handleNavigatetoDelete}
+                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
                         >
                             Delete Company
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </>
                 )}
             </div>
