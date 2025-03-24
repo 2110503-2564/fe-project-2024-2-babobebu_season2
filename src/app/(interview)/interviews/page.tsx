@@ -1,14 +1,18 @@
-"use client"; 
+"use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import getInterviews from "@/libs/getInterviews";
+// import { deleteInterview } from "@/libs/deleteInterview";
 import { InterviewJson } from "../../../../interface";
-import InterviewCatalog from "@/components/InterviewCatalog";
-import { LinearProgress } from "@mui/material";
+import { LinearProgress, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 
 const Page = () => {
     const [interviews, setInterviews] = useState<InterviewJson | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+    const [selectedInterviewId, setSelectedInterviewId] = useState<string | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const fetchInterviews = async () => {
@@ -29,14 +33,29 @@ const Page = () => {
         fetchInterviews();
     }, []);
 
+    const handleDeleteClick = (id: string) => {
+        setSelectedInterviewId(id);
+        setDeleteDialogOpen(true);
+    };
+
+    const confirmDelete = async () => {
+        if (selectedInterviewId !== null) {
+            // await deleteInterview(selectedInterviewId);
+            setInterviews((prev) => ({
+                ...prev!,
+                data: prev!.data.filter((interview) => interview._id !== selectedInterviewId)
+            }));
+            setDeleteDialogOpen(false);
+            setSelectedInterviewId(null);
+        }
+    };
+
     return (
         <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-center py-16 px-6 text-white">
-            {/* Page Title */}
             <h1 className="text-3xl md:text-4xl font-extrabold drop-shadow-lg mb-10">
                 Explore Scheduled Interviews!
             </h1>
 
-            {/* Loader */}
             {loading && (
                 <div className="mt-10 flex flex-col items-center">
                     <p className="text-lg font-medium">Loading interviews...</p>
@@ -46,15 +65,52 @@ const Page = () => {
                 </div>
             )}
 
-            {/* Error Message */}
             {error && <div className="text-xl text-red-500">{error}</div>}
 
-            {/* Content */}
             {!loading && !error && interviews && interviews.data.length > 0 ? (
-                <InterviewCatalog interviewsJson={interviews} />
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white text-black rounded-lg overflow-hidden shadow-lg">
+                        <thead>
+                            <tr className="bg-gray-800 text-white">
+                                <th className="py-2 px-4">Interview ID</th>
+                                <th className="py-2 px-4">User ID</th>
+                                <th className="py-2 px-4">Company Name</th>
+                                <th className="py-2 px-4">Date</th>
+                                <th className="py-2 px-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {interviews.data.map((interview) => (
+                                <tr key={interview._id} className="border-b">
+                                    <td className="py-2 px-4">{interview._id}</td>
+                                    <td className="py-2 px-4">{interview.user}</td>
+                                    <td className="py-2 px-4">{interview.company.name}</td>
+                                    <td className="py-2 px-4">{interview.intwDate}</td>
+                                    <td className="py-2 px-4 flex gap-2 justify-center">
+                                        <Button variant="contained" color="primary" onClick={() => router.push(`/updateinterview?interviewId=${interview._id}`)}>Edit</Button>
+                                        <Button variant="contained" color="secondary" onClick={() => handleDeleteClick(interview._id)}>
+                                            Delete
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             ) : (
                 !loading && !error && <div className="text-xl">No interviews found.</div>
             )}
+
+            <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
+                <DialogTitle>Confirm Deletion</DialogTitle>
+                <DialogContent>
+                    <p>Are you sure you want to delete this interview?</p>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setDeleteDialogOpen(false)} color="primary">Cancel</Button>
+                    <Button onClick={confirmDelete} color="secondary">Delete</Button>
+                </DialogActions>
+            </Dialog>
         </main>
     );
 };
