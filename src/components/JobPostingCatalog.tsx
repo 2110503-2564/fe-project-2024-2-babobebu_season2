@@ -18,7 +18,7 @@ export default async function JobPostingCatalog({ jobPostingsJson }: { jobPostin
             {/* Add Company Button */}
             {session?.user?.role === "admin" && (
                 <div className="flex justify-end mt-6"> 
-                    <Link href='/jobpostings/job'>
+                    <Link href='/jobpostings/add'>
                         <button 
                             className="bg-black text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-green-600">
                             Add JobPosting
