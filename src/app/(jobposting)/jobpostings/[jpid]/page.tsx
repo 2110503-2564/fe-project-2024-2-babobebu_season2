@@ -57,7 +57,7 @@ export default function JobPostingDetailPage({ params }: { params: { jpid: strin
                             Update Company
                         </button>
                     </Link>
-                    <Link href='/deletejobposting'>
+                    <Link href='/jobdelete'>
                         <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
                         >
                             Delete Company
