@@ -2,16 +2,18 @@
 import { useState } from "react";
 import { updateJobPosting } from "@/libs/updateJobPosting";
 import { getSession } from "next-auth/react"; // Import getSession
+import { useSearchParams } from "next/navigation";
 
 function UpdateJobPosting() {
+    const searchParams = useSearchParams();
+    const jobpostingId = searchParams.get("jobpostingId");
+    console.log("Job Posting ID:", jobpostingId);
     const [formData, setFormData] = useState({
-        jobId: "",
         title: "",
         jobdescription: "",
         requirement: "",
         salary_range: "",
-        jobtype: "",
-        company: ""
+        jobtype: ""
     });
 
     const [message, setMessage] = useState("");
@@ -23,34 +25,30 @@ function UpdateJobPosting() {
             [name]: value
         }));
     }
-
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
-
+    
+        if (!jobpostingId) {
+            setMessage("Company ID is missing.");
+            return;
+        }
+    
+        // Remove empty fields before sending request
+        const filteredData = Object.fromEntries(
+            Object.entries(formData).filter(([_, value]) => value.trim() !== "")
+        );
+    
+        if (Object.keys(filteredData).length === 0) {
+            setMessage("No data to update.");
+            return;
+        }
+    
         const session = await getSession();
         console.log("Token from session:", session?.user.token); // Debugging
 
-        const { jobId, ...data } = formData;
-        if (!jobId) {
-            setMessage("Job Posting ID is required.");
-            return;
-        }
-
-        const result = await updateJobPosting(jobId, data);
-
+        const result = await updateJobPosting(jobpostingId,filteredData)
+    
         setMessage(result.message);
-
-        if (result.success) {
-            setFormData({
-                jobId: "",
-                title: "",
-                jobdescription: "",
-                requirement: "",
-                salary_range: "",
-                jobtype: "",
-                company: ""
-            });
-        }
     }
 
     return (

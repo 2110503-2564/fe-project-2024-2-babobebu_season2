@@ -23,6 +23,15 @@ export default function JobPostingDetailPage({ params }: { params: { jpid: strin
         return <div className="text-center text-white">Loading...</div>;
     }
 
+    const handleNavigatetoDelete = () => {
+        router.push(`/jobdelete/${params.jpid}`);
+    };
+
+
+    const handleNavigatetoUpdate = () => {
+        router.push(`/updatejobposting?jobpostingId=${params.jpid}`);
+    };
+
     return (
         <main className="w-full min-h-screen bg-gradient-to-b from-cyan-600 to-green-500 text-white flex flex-col items-center py-12 px-6">
             {/* Job Posting Title */}
@@ -51,18 +60,22 @@ export default function JobPostingDetailPage({ params }: { params: { jpid: strin
 
                 {session?.user?.role === "admin" && (
                 <>
-                    <Link href='/updatejobposting'>
-                        <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
+                    {/* <Link href='/updatejobposting'> */}
+                        <button
+                            onClick={handleNavigatetoUpdate} 
+                            className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
                         >
                             Update Company
                         </button>
-                    </Link>
-                    <Link href='/jobdelete'>
-                        <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
+                    {/* </Link> */}
+                    {/* <Link href='/jobdelete'> */}
+                        <button 
+                            onClick={handleNavigatetoDelete}
+                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
                         >
                             Delete Company
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </>
                 )}
             </div>
