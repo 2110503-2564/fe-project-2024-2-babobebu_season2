@@ -24,7 +24,7 @@ export default function JobPostingDetailPage({ params }: { params: { jpid: strin
     }
 
     const handleNavigatetoDelete = () => {
-        router.push(`/jobdelete/${params.jpid}`);
+        router.push(`/jobpostings/delete/${params.jpid}`);
     };
 
 
