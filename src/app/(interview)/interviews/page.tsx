@@ -18,6 +18,7 @@ const Page = () => {
     useEffect(() => {
         const fetchInterviews = async () => {
             try {
+                router.refresh();
                 const data = await getInterviews();
                 if (data.success) {
                     setInterviews(data);

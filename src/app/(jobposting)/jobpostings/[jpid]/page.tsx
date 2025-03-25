@@ -13,6 +13,7 @@ export default function JobPostingDetailPage({ params }: { params: { jpid: strin
     // Fetch job posting details on client side
     useEffect(() => {
         async function fetchJobPosting() {
+            router.refresh();
             const data = await getJobPosting(params.jpid);
             setJobPosting(data);
         }

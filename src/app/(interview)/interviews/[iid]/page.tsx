@@ -14,6 +14,7 @@ export default function InterviewDetailPage({ params }: { params: { iid: string 
 
     // Fetch interview details on client side
     useEffect(() => {
+        router.refresh();
         async function fetchInterview() {
             const data = await getInterview(params.iid);  // Use iid here
             console.log("Fetched Interview Data:", data);  // Log fetched data for debugging

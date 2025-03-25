@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { addJobPosting } from "@/libs/addJobPosting";
 import getCompanies from "@/libs/getCompanies";
-
+import { useRouter } from "next/navigation"
 const jobTypes = ["Full-time", "Part-time", "Contract", "Internship", "Temporary"];
 
 function JobForm() {
@@ -19,9 +19,11 @@ function JobForm() {
     const [message, setMessage] = useState("");
     const [companies, setCompanies] = useState<{ _id: string; name: string }[]>([]);
     const [selectedCompany, setSelectedCompany] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
         async function fetchCompanies() {
+            router.refresh();
             try {
                 const data = await getCompanies();
                 setCompanies(data.data);
