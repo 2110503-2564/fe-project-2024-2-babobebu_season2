@@ -9,7 +9,7 @@ export async function addInterview(companyId: string, formData: Record<string, s
             return { success: false, message: "No token found. Please log in." };
         }
 
-        const response = await fetch(`http://jobfair-env.eba-et2rserh.us-east-1.elasticbeanstalk.com/${companyId}/interviews`, {
+        const response = await fetch(`http://localhost:5005/${companyId}/interviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

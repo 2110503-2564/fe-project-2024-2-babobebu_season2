@@ -9,7 +9,7 @@ export async function deleteInterview(jpid: string) {
             throw new Error("Unauthorized: No token found. Please log in.");
         }
 
-        const response = await fetch(`http://jobfair-env.eba-et2rserh.us-east-1.elasticbeanstalk.com/api/v1/interviews/${jpid}`, {
+        const response = await fetch(`http://localhost:5005/api/v1/interviews/${jpid}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

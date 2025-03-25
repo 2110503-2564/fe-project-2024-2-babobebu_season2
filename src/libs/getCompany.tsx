@@ -4,7 +4,7 @@ export default async function getCompany(cid:string){
         setTimeout(resolve, 300);
     })
 
-    const response=await fetch(`http://jobfair-env.eba-et2rserh.us-east-1.elasticbeanstalk.com/api/v1/companies/${cid}`)
+    const response=await fetch(`http://localhost:5005/api/v1/companies/${cid}`)
     
     if(!response.ok)
         throw new Error("Failed to fetch Venues");

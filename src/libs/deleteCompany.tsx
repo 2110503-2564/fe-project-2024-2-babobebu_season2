@@ -9,7 +9,7 @@ export async function deleteCompany(cid: string) {
             throw new Error("Unauthorized: No token found. Please log in.");
         }
 
-        const response = await fetch(`http://jobfair-env.eba-et2rserh.us-east-1.elasticbeanstalk.com/api/v1/companies/${cid}`, {
+        const response = await fetch(`http://localhost:5005/api/v1/companies/${cid}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
