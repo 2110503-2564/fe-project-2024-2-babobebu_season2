@@ -3,8 +3,11 @@ import { useState } from "react";
 import { updateJobPosting } from "@/libs/updateJobPosting";
 import { getSession } from "next-auth/react"; // Import getSession
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function UpdateJobPosting() {
+    const router = useRouter();
+    const [isRedirecting, setIsRedirecting] = useState(false);
     const searchParams = useSearchParams();
     const jobpostingId = searchParams.get("jobpostingId");
     console.log("Job Posting ID:", jobpostingId);
@@ -49,6 +52,15 @@ function UpdateJobPosting() {
         const result = await updateJobPosting(jobpostingId,filteredData)
     
         setMessage(result.message);
+        setTimeout(() => {
+            setIsRedirecting(true);
+        }, 3000);
+
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            router.push("/companies");
+            router.refresh()
+        },5000);
     }
 
     return (
@@ -98,6 +110,7 @@ function UpdateJobPosting() {
                 </form>
                 
                 {message && <div className="text-center text-red-600 font-medium mt-4">{message}</div>}
+                {isRedirecting && <p className="text-blue-500 mt-2">Redirecting...</p>}
                 
             </div>
         </main>

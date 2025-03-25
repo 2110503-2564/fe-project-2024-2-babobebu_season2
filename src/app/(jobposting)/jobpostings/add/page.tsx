@@ -4,10 +4,12 @@
 import { useState, useEffect } from "react";
 import { addJobPosting } from "@/libs/addJobPosting";
 import getCompanies from "@/libs/getCompanies";
+import { useRouter } from "next/navigation";
 
 const jobTypes = ["Full-time", "Part-time", "Contract", "Internship", "Temporary"];
 
 function JobForm() {
+    const router = useRouter(); 
     const [formData, setFormData] = useState({
         title: "",
         jobdescription: "",
@@ -19,6 +21,7 @@ function JobForm() {
     const [message, setMessage] = useState("");
     const [companies, setCompanies] = useState<{ _id: string; name: string }[]>([]);
     const [selectedCompany, setSelectedCompany] = useState("");
+    const [isRedirecting, setIsRedirecting] = useState(false);
 
     useEffect(() => {
         async function fetchCompanies() {
@@ -64,6 +67,15 @@ function JobForm() {
                 jobtype: "",
             });
         }
+        setTimeout(() => {
+            setIsRedirecting(true);
+        }, 3000);
+
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            router.push("/companies");
+            router.refresh()
+        }, 5000);
     }
 
     return (
@@ -137,6 +149,7 @@ function JobForm() {
 
                 {/* Message Display */}
                 {message && <div className="text-center text-red-600 font-medium mt-4">{message}</div>}
+                {isRedirecting && <p className="text-blue-500 mt-2">Redirecting...</p>}
             </div>
         </main>
     );
