@@ -8,10 +8,6 @@ export default async function DeleteJobpostingDetailPage({ params }: { params: {
     const router = useRouter();
     const jobDetail = await getJobPosting(params.jpid);
 
-    useEffect(() => {
-        router.refresh();
-    }, []);
-
     const handleDelete = async () => {
         try {
             await deleteJobposting(params.jpid);

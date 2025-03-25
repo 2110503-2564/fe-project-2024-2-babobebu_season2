@@ -81,14 +81,16 @@ export default function CompanyDetailPage({ params }: { params: { cid: string } 
                 >
                     {showJobPosting ? "Hide Job Posting" : "View Job Posting"}
                 </button>
-
-                <button
-                    onClick={handleNavigate}
-                    className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
-                >
-                    Book an Interview
-                </button>
-
+                {(session?.user?.role === "admin" || session?.user?.role === "user") && (
+                <>
+                    <button
+                        onClick={handleNavigate}
+                        className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
+                    >
+                        Book an Interview
+                    </button>
+                </>
+                )}
                 {session?.user?.role === "admin" && (
                 <>
 
