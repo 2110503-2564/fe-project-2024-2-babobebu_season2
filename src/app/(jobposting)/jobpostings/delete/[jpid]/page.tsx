@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { deleteJobposting } from "@/libs/deleteJobposting";
 import getJobPosting from "@/libs/getJobPosting";

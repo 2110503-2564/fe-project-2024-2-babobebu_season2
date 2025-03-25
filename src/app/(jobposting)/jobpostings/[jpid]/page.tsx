@@ -1,9 +1,8 @@
 "use client"; 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import getJobPosting from "@/libs/getJobPosting"; // Ensure this works client-side
+import getJobPosting from "@/libs/getJobPosting";
 
 export default function JobPostingDetailPage({ params }: { params: { jpid: string } }) {
     const [jobPosting, setJobPosting] = useState<any>(null);
@@ -52,31 +51,20 @@ export default function JobPostingDetailPage({ params }: { params: { jpid: strin
 
             {/* Buttons */}
             <div className="flex space-x-4 mt-8">
-                {/* <button
-                    onClick={() => router.push(`/applyJob?jpid=${params.jpid}`)}
-                    className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
-                >
-                    Apply for Jobs
-                </button> */}
-
                 {session?.user?.role === "admin" && (
                 <>
-                    {/* <Link href='/updatejobposting'> */}
                         <button
                             onClick={handleNavigatetoUpdate} 
                             className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-500"
                         >
                             Update Jobposting
                         </button>
-                    {/* </Link> */}
-                    {/* <Link href='/jobdelete'> */}
                         <button 
                             onClick={handleNavigatetoDelete}
                             className="bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300"
                         >
                             Delete Jobposting
                         </button>
-                    {/* </Link> */}
                 </>
                 )}
             </div>
