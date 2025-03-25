@@ -1,4 +1,3 @@
-///api/v1/jobpostings?company=67dc64a56e9d631d20c5f510
 export default async function getJobPostingforCompany(cid:string) {
 
     await new Promise((resolve) => {
