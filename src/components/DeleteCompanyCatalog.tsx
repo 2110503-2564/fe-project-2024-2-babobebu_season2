@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Card from "./Card"
-import { deleteCompany } from "@/libs/deleteCompany";
 import { CompanyJson } from "../../interface";
 
 export default async function VenueCatalog({companiesJson}: {companiesJson: Promise<CompanyJson>}) {
