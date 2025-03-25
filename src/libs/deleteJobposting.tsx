@@ -17,12 +17,6 @@ export async function deleteJobposting(jpid: string) {
         });
 
         if (!response.ok) {
-            // if (response.status === 401) {
-            //     throw new Error("Unauthorized: You don't have permission to delete this jobposting.");
-            // } else if (response.status === 403) {
-            //     throw new Error("Forbidden: Your role is not authorized to delete jobposting.");
-            // }
-            // const errorData = await response.json();
             throw new Error(`Failed to delete jobposting (status: ${response.status})`);
         }
 
