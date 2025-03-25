@@ -3,16 +3,19 @@ import Image from "next/image";
 import getCompany from "@/libs/getCompany";
 import { deleteCompany } from "@/libs/deleteCompany";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default async function DeleteCompanyDetailPage({ params }: { params: { cid: string } }) {
     
     const router = useRouter(); 
+    const [isRedirecting, setIsRedirecting] = useState(false);
     const companyDetail = await getCompany(params.cid);
 
     const handleDelete = async () => {
         try {
             await deleteCompany(params.cid);
             router.push("/companies");
+            router.refresh()
         } catch (error: any) {
             console.error("Failed to delete company:", error.message);
         }

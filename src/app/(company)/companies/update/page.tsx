@@ -3,10 +3,13 @@ import { useState } from "react";
 import { updateCompany } from "@/libs/updateCompany";
 import { getSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function UpdateCompany() {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const companyId = searchParams.get("companyId");
+    const [isRedirecting, setIsRedirecting] = useState(false);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -52,6 +55,16 @@ function UpdateCompany() {
         const result = await updateCompany(companyId, filteredData);
 
         setMessage(result.message);
+
+        setTimeout(() => {
+            setIsRedirecting(true);
+        }, 3000);
+
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            router.push("/companies");
+            router.refresh()
+        },5000);
     }
 
     return (
@@ -98,6 +111,7 @@ function UpdateCompany() {
 
                 {/* Message Display */}
                 {message && <div className="text-center text-red-600 font-medium mt-4">{message}</div>}
+                {isRedirecting && <p className="text-blue-500 mt-2">Redirecting...</p>}
             </div>
         </main>
     );

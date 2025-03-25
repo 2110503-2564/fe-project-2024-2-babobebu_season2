@@ -2,8 +2,10 @@
 import { useState } from "react";
 import { addCompany } from "@/libs/addCompany";
 import { getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function CompanyForm() {
+    const router = useRouter(); 
     const [formData, setFormData] = useState({
         name: "",
         address: "",
@@ -16,6 +18,7 @@ function CompanyForm() {
     });
 
     const [message, setMessage] = useState("");
+    const [isRedirecting, setIsRedirecting] = useState(false);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         const { name, value } = event.target;
@@ -47,6 +50,16 @@ function CompanyForm() {
                 telephonenumber: ""
             });
         }
+
+        setTimeout(() => {
+            setIsRedirecting(true);
+        }, 3000);
+
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            router.push("/companies");
+            router.refresh()
+        }, 5000);
     }
 
     return (
@@ -93,6 +106,7 @@ function CompanyForm() {
 
                 {/* Message Display */}
                 {message && <div className="text-center text-red-600 font-medium mt-4">{message}</div>}
+                {isRedirecting && <p className="text-blue-500 mt-2">Redirecting...</p>}
             </div>
         </main>
     );
