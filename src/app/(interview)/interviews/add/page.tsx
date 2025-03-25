@@ -7,16 +7,19 @@ import { TextField } from "@mui/material";
 import { Dayjs } from "dayjs";
 import { useSearchParams } from "next/navigation"; // Get companyId from URL
 import { addInterview } from "@/libs/addInterview"; // Import backend function
+import { useRouter } from "next/navigation"; 
 
 function ClientBooking() {
     const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
     const [userId, setUserId] = useState<string | null>(null);
     const searchParams = useSearchParams();
     const companyId = searchParams.get("companyId"); // Get companyId from URL
+    const router = useRouter();
 
     // Fetch user profile when component mounts
     useEffect(() => {
         async function fetchUserProfile() {
+            router.refresh();
             const response = await fetch("/api/user");
             const data = await response.json();
 

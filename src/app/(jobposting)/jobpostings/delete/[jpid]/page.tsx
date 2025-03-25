@@ -1,5 +1,5 @@
 'use client';
-
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { deleteJobposting } from "@/libs/deleteJobposting";
 import getJobPosting from "@/libs/getJobPosting";
@@ -8,10 +8,15 @@ export default async function DeleteJobpostingDetailPage({ params }: { params: {
     const router = useRouter();
     const jobDetail = await getJobPosting(params.jpid);
 
+    useEffect(() => {
+        router.refresh();
+    }, []);
+
     const handleDelete = async () => {
         try {
             await deleteJobposting(params.jpid);
             router.push("/jobpostings");
+            router.refresh();
         } catch (error: any) {
             console.error("Failed to delete job posting:", error.message);
         }

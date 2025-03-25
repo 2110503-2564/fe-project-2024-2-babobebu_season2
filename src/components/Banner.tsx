@@ -70,7 +70,11 @@ export default function Banner() {
                 {/* See Companies Button */}
                 <button
                     className="bg-gradient-to-r from-cyan-500 to-green-500 text-white font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
-                    onClick={(e) => { e.stopPropagation(); router.push('/companies'); }}
+                    onClick={(e) => { 
+                        e.stopPropagation(); 
+                        router.push('/companies');
+                        router.refresh(); 
+                    }}
                 >
                     See Companies
                 </button>
@@ -78,7 +82,11 @@ export default function Banner() {
                 {/* See JobPostings Button */}
                 <button
                     className="bg-white text-black font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
-                    onClick={(e) => { e.stopPropagation(); router.push('/jobpostings'); }} // Change path manually
+                    onClick={(e) => { 
+                        e.stopPropagation(); 
+                        router.push('/jobpostings');
+                        router.refresh();
+                    }} // Change path manually
                 >
                     See JobPostings
                 </button>
@@ -86,7 +94,11 @@ export default function Banner() {
                 {/* See Interviews Button */}
                 <button
                     className="bg-white text-black font-semibold px-5 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-cyan-400"
-                    onClick={(e) => { e.stopPropagation(); router.push('/interviews'); }} // Change path manually
+                    onClick={(e) => { 
+                        e.stopPropagation(); 
+                        router.push('/interviews');
+                        router.refresh(); 
+                    }} // Change path manually
                 >
                     See Interviews
                 </button>
