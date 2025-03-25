@@ -14,5 +14,4 @@ export default async function getCompanies() {
     return await response.json();
 
 
-    
 }
