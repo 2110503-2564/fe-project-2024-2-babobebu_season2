@@ -4,12 +4,12 @@ import Card from "./Card";
 import { CompanyJson } from "../../interface";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ Correct import for Next.js 13+
+import { useRouter } from "next/navigation";
 
 export default function CCatalog({ companiesJson }: { companiesJson: Promise<CompanyJson> }) {
     const [companyJsonReady, setCompanyJsonReady] = useState<CompanyJson | null>(null);
     const { data: session } = useSession();
-    const router = useRouter(); // ✅ Use this inside the component
+    const router = useRouter();
 
     useEffect(() => {
         companiesJson.then(setCompanyJsonReady);
