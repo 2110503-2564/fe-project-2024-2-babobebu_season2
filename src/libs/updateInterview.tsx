@@ -1,4 +1,3 @@
-// src/libs/updateInterview.ts
 import { getSession } from "next-auth/react";
 
 export async function updateInterview(interviewId: string, formData: Record<string, string>) {
