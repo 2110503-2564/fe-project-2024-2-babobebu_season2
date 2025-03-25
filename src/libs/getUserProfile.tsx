@@ -1,5 +1,5 @@
 export default async function getUserProfile(token:string){
-    const response= await fetch ('http://localhost:5005/api/v1/auth/me',{
+    const response= await fetch ('http://jobfair-env.eba-et2rserh.us-east-1.elasticbeanstalk.com/api/v1/auth/me',{
         method: "GET",
         headers:{
             authorization: `Bearer ${token}`,

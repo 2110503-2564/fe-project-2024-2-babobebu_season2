@@ -10,7 +10,7 @@ export async function updateInterview(interviewId: string, formData: Record<stri
             return { success: false, message: "No token found. Please log in." };
         }
 
-        const response = await fetch(`http://localhost:5005/api/v1/interviews/${interviewId}`, {
+        const response = await fetch(`http://jobfair-env.eba-et2rserh.us-east-1.elasticbeanstalk.com/api/v1/interviews/${interviewId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

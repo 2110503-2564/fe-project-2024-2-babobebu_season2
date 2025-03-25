@@ -11,7 +11,7 @@ export async function addJobPosting(companyId: string, formData: Record<string, 
             return { success: false, message: "No token found. Please log in." };
         }
 
-        const response = await fetch(`http://localhost:5005/api/v1/jobpostings/${companyId}`, {
+        const response = await fetch(`http://jobfair-env.eba-et2rserh.us-east-1.elasticbeanstalk.com/api/v1/jobpostings/${companyId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
