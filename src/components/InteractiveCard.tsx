@@ -1,6 +1,5 @@
 'use client'
 import React from "react";
-import { InterviewJson } from "../../interface";
 
 
 export default function InteractiveCard({children}:{children:React.ReactNode}){
