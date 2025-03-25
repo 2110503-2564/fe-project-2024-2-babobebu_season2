@@ -10,4 +10,5 @@ export default async function getCompany(cid:string){
         throw new Error("Failed to fetch Venues");
         
     return await response.json();
+    
 }
