@@ -9,7 +9,7 @@ export async function addInterview(companyId: string, formData: Record<string, s
             return { success: false, message: "No token found. Please log in." };
         }
 
-        const response = await fetch(`http://localhost:5005/${companyId}/interviews`, {
+        const response = await fetch(`https://jobfair-project-rvik.vercel.app/api/v1/${companyId}/interviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

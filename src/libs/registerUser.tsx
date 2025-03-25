@@ -1,6 +1,6 @@
 export default async function registerUser(formData: { name: string; telephone: string; email: string; password: string }) {
     try {
-        const response = await fetch("http://localhost:5005/api/v1/auth/register", {
+        const response = await fetch("https://jobfair-project-rvik.vercel.app/api/v1/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

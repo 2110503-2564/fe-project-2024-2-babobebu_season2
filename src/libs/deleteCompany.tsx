@@ -9,7 +9,7 @@ export async function deleteCompany(cid: string) {
             throw new Error("Unauthorized: No token found. Please log in.");
         }
 
-        const response = await fetch(`http://localhost:5005/api/v1/companies/${cid}`, {
+        const response = await fetch(`https://jobfair-project-rvik.vercel.app/api/v1/companies/${cid}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

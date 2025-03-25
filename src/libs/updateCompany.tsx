@@ -9,7 +9,7 @@ export const updateCompany = async (companyId: string, data: any) => {
             return { success: false, message: "No token found. Please log in." };
         }
 
-        const response = await fetch(`http://localhost:5005/api/v1/companies/${companyId}`, {
+        const response = await fetch(`https://jobfair-project-rvik.vercel.app/api/v1/companies/${companyId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -4,7 +4,7 @@ export default async function getCompanies() {
         setTimeout(resolve, 300);
     })
 
-    const response = await fetch("http://localhost:5005/api/v1/companies",{
+    const response = await fetch("https://jobfair-project-rvik.vercel.app/api/v1/companies",{
         cache:"no-cache"
     });
 
