@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react"; // Import getSession
+import { getSession } from "next-auth/react";
 export async function addJobPosting(companyId: string, formData: Record<string, string>) {
     try {
         const session = await getSession(); // Get session data
