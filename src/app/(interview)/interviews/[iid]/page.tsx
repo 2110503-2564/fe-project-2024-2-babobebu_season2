@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import getInterview from "@/libs/getInterview"; // Ensure this works client-side
+import getInterview from "@/libs/getInterview";
 import { useSession } from "next-auth/react"; // To handle admin role-based access
-import { deleteInterview } from "@/libs/deleteInterview"; // Ensure this is the correct path
+import { deleteInterview } from "@/libs/deleteInterview";
 
 export default function InterviewDetailPage({ params }: { params: { iid: string } }) {
     console.log("InterviewDetailPage params:", params);
@@ -16,8 +16,8 @@ export default function InterviewDetailPage({ params }: { params: { iid: string 
     useEffect(() => {
         router.refresh();
         async function fetchInterview() {
-            const data = await getInterview(params.iid);  // Use iid here
-            console.log("Fetched Interview Data:", data);  // Log fetched data for debugging
+            const data = await getInterview(params.iid);
+            // console.log("Fetched Interview Data:", data);  // Log fetched data for debugging
             setInterviewDetail(data);
         }
         fetchInterview();
@@ -39,7 +39,7 @@ export default function InterviewDetailPage({ params }: { params: { iid: string 
         const confirmation = confirm("Are you sure you want to delete this interview?");
         if (confirmation) {
             try {
-                const result = await deleteInterview(params.iid); // Call the deleteInterview function
+                const result = await deleteInterview(params.iid);
                 if (result.success) {
                     alert("Interview deleted successfully.");
                     router.push("/interviews");  // Redirect to interviews list after deletion
