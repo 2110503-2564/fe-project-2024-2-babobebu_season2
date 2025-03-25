@@ -21,6 +21,7 @@ function JobForm() {
     const [message, setMessage] = useState("");
     const [companies, setCompanies] = useState<{ _id: string; name: string }[]>([]);
     const [selectedCompany, setSelectedCompany] = useState("");
+    const [isRedirecting, setIsRedirecting] = useState(false);
 
     useEffect(() => {
         async function fetchCompanies() {
