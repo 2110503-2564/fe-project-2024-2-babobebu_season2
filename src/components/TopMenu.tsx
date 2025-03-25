@@ -19,14 +19,6 @@ export default function TopMenu() {
                     className="object-contain cursor-pointer"
                 />
             </Link>
-            
-
-            {/* Menu Items */}
-            {/* <nav className="flex space-x-6">
-                <Link href="/booking" className="text-lg font-semibold hover:text-cyan-800 transition-all">
-                    Book Interview
-                </Link>
-            </nav> */}
 
             {/* Authentication Button */}
             <div className="flex items-center space-x-4">
