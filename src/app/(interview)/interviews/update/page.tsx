@@ -6,8 +6,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField } from "@mui/material";
 import { Dayjs } from "dayjs";
-import { useSearchParams } from "next/navigation"; // Get interviewId from URL
-import { updateInterview } from "@/libs/updateInterview"; // Import backend function
+import { useSearchParams } from "next/navigation";
+import { updateInterview } from "@/libs/updateInterview";
 import { useRouter } from "next/navigation"
 
 function UpdateInterview() {
