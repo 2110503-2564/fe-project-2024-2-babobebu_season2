@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react"; // Import getSession
+import { getSession } from "next-auth/react";
 
 export async function addInterview(companyId: string, formData: Record<string, string>) {
     try {
@@ -13,7 +13,7 @@ export async function addInterview(companyId: string, formData: Record<string, s
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`, // Send token from session
+                "Authorization": `Bearer ${token}`,
             },
             body: JSON.stringify(formData),
         });
