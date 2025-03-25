@@ -5,8 +5,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField } from "@mui/material"; 
 import { Dayjs } from "dayjs";
-import { useSearchParams } from "next/navigation"; // Get companyId from URL
-import { addInterview } from "@/libs/addInterview"; // Import backend function
+import { useSearchParams } from "next/navigation"; 
+import { addInterview } from "@/libs/addInterview"; 
 import { useRouter } from "next/navigation"; 
 
 function ClientBooking() {
