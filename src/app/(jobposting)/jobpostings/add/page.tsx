@@ -74,7 +74,7 @@ function JobForm() {
 
         // Redirect after 5 seconds
         setTimeout(() => {
-            router.push("/companies");
+            router.push("/jobpostings");
             router.refresh()
         }, 5000);
     }
