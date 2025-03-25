@@ -14,7 +14,6 @@ export default async function JobPostingPage() {
             </h1>
             
         {/* Loader & Content */}
-        {/* Loader & Content */}
         <Suspense fallback={
             <div className="mt-10 flex flex-col items-center">
                 <p className="text-lg font-medium">Loading companies...</p>
