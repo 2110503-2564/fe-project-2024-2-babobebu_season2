@@ -4,12 +4,13 @@ export async function addInterview(companyId: string, formData: Record<string, s
     try {
         const session = await getSession(); // Get session data
         const token = session?.user.token; // Extract token
+        console.log("Session Data:", session);
 
         if (!token) {
             return { success: false, message: "No token found. Please log in." };
         }
 
-        const response = await fetch(`https://jobfair-project-rvik.vercel.app/api/v1/${companyId}/interviews`, {
+        const response = await fetch(`https://jobfair-project-rvik.vercel.app/api/v1/companies/${companyId}/interviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
