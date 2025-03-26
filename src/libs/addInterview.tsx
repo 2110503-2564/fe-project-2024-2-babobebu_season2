@@ -4,6 +4,7 @@ export async function addInterview(companyId: string, formData: Record<string, s
     try {
         const session = await getSession(); // Get session data
         const token = session?.user.token; // Extract token
+        console.log("Session Data:", session);
 
         if (!token) {
             return { success: false, message: "No token found. Please log in." };
